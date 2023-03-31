@@ -6,9 +6,15 @@
     <p class="lead">{{name}} </p>
 
     <button (click)="getUserInfo()">Get User Info</button>
-    <div id="user-info"></div>
+    <div *ngFor="let user of userInfo | keyvalue">
+      {{user.key}}: {{user.value}}
+    </div>
+
     <button (click)="getAccessToken()">token</button>
-    <div id="token"></div>
+    <div >
+      {{token}}
+    </div>
+
     <div *ngIf="isAdmin()">
       <p>Selam Admin!</p>
     </div>

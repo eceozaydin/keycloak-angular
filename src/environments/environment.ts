@@ -1,11 +1,10 @@
 export const environment = {
   production:false,
   keycloak:{
-    issuer:"http://localhost:8080/auth/realms/MySSOApplication",
-    redirectUri: "http://localhost:4200/",
+    issuer:"http://localhost:8180/realms/angular",
+    redirectUri: "http://localhost:4200/*",
     clientId:"sso-app",
-    scope:"openid profile email offline_access",
-
+    //scope:"openid profile offline_access",
 
   }
 
