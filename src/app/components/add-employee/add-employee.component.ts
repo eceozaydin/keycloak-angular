@@ -25,6 +25,8 @@ export class AddEmployeeComponent implements OnInit{
     });
   }
   saveEmployee(){
+    this.employee.name = this.addForm.get('name')?.value;
+    this.employee.departmentName = this.addForm.get('departmentName')?.value;
     this.employeeService.createEmployee(this.employee)
       .subscribe(data =>{
         this.goToList().then(r => {

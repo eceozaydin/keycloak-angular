@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TokenInterceptor} from "./interceptors/token.interceptors";
+import {KeycloakService} from "keycloak-angular";
 
 @NgModule({
   declarations: [

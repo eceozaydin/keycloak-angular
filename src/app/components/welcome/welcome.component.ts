@@ -26,6 +26,7 @@ export class WelcomeComponent {
     }
   }
 
+
   configureSingleSignOn(){
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.tokenValidationHandler=new JwksValidationHandler();//npm i angular-oauth2-oidc-jwks --save

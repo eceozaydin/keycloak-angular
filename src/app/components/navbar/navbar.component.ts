@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "../../sso-config";
 import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,9 @@ export class NavbarComponent implements OnInit{
 
 
   name:string="";//user name
-  constructor(private oauthService: OAuthService) {
+  constructor(
+    private oauthService: OAuthService,
+    private jwtHelper: JwtHelperService) {
   }
   ngOnInit(): void {
     // configure single sign-on
@@ -30,10 +33,10 @@ export class NavbarComponent implements OnInit{
   configureSingleSignOn(){
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.tokenValidationHandler=new JwksValidationHandler();//npm i angular-oauth2-oidc-jwks --save
-    this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r =>
+    /*this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r =>
       {
         console.log("Authantication successful")}
-    );
+    );*/
   }
 
   login(){
@@ -50,6 +53,11 @@ export class NavbarComponent implements OnInit{
     return claims ? claims:null;
   }
 
+  isAdmin(): boolean {
+    const decodedAccessToken = this.oauthService.getAccessToken();
+    const payload = this.jwtHelper.decodeToken(decodedAccessToken);
+    return !!payload && payload.realm_access.roles.includes('admin');
+  }
 
 
 }
