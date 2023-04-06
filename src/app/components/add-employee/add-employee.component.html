@@ -10,7 +10,16 @@
       <label>Department Name:</label>
       <input type="text" formControlName="departmentName" class="form-control">
     </div>
+    <!--
+    <form>
+      <input type="text" formControlName="preferred_username" [hidden]="!preferred_username" />
+    </form>
+    <div>
+      {{getUsername()}}
+    </div>-->
 
     <button type="submit" [disabled]="!addForm.valid" class="btn btn-success">Submit</button>
   </form>
+
+
 </div>

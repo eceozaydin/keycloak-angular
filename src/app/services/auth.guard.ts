@@ -34,5 +34,11 @@ export class AuthGuard {
       return this.router.parseUrl('welcome');
     }
   }
+
+  isAdmin(): boolean {
+    const decodedAccessToken = this.oauthService.getAccessToken();
+    const payload = this.jwtHelper.decodeToken(decodedAccessToken);
+    return !!payload && payload.realm_access.roles.includes('admin');
+  }
 }
 

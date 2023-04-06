@@ -3,6 +3,7 @@ import {OAuthService} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "../../sso-config";
 import {JwksValidationHandler} from "angular-oauth2-oidc-jwks";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {AuthGuard} from "../../services/auth.guard";
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,9 @@ export class NavbarComponent implements OnInit{
   name:string="";//user name
   constructor(
     private oauthService: OAuthService,
-    private jwtHelper: JwtHelperService) {
+    private jwtHelper: JwtHelperService,
+    private  authGuard: AuthGuard
+  ) {
   }
   ngOnInit(): void {
     // configure single sign-on
@@ -53,10 +56,8 @@ export class NavbarComponent implements OnInit{
     return claims ? claims:null;
   }
 
-  isAdmin(): boolean {
-    const decodedAccessToken = this.oauthService.getAccessToken();
-    const payload = this.jwtHelper.decodeToken(decodedAccessToken);
-    return !!payload && payload.realm_access.roles.includes('admin');
+  isAdmin(){
+    return this.authGuard.isAdmin();
   }
 
 
