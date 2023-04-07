@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.oauthService.getAccessToken();
 
    //const token = localStorage.getItem('access_token');
-
+   //console.log("token:"+token);
     // token varsa header'a ekle
     if (token) {
       request = request.clone({

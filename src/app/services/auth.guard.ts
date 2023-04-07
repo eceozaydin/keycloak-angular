@@ -20,7 +20,7 @@ export const authGuard = () => {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
+export class AuthGuard implements CanActivate{
 
   constructor(private oauthService: OAuthService,
               private router: Router,

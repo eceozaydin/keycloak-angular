@@ -41,36 +41,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-/*
-const routes: Routes = [
-  {
-    path: 'add-employee',
-    component: AddEmployeeComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['admin'] },
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'welcome',
-    component: WelcomeComponent,
-  },
-  {
-    path: "",
-    redirectTo:"welcome",
-    pathMatch: "full"},
-  {
-    path: "**",
-    redirectTo:"welcome",
-    pathMatch: "full"},
 
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}*/
