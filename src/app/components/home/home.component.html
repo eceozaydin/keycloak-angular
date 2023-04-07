@@ -1,23 +1,27 @@
 
 <div class="container">
   <div class="p-5 mt-3 bg-light rounded">
-    <h1>Home Page </h1>
+    <h1 >{{name}}</h1>
+      <h1>
+    <div *ngIf="isAdmin()">
+      <p>Selam Admin!</p>
+    </div>
+    </h1>
 
-    <p class="lead">{{name}} </p>
+    <div>
+    <button (click)="getUserInfo()" class="button-85" role="button">Get User Info</button>
+  </div>
 
-    <button (click)="getUserInfo()">Get User Info</button>
     <div *ngFor="let user of userInfo | keyvalue">
       {{user.key}}: {{user.value}}
     </div>
-
-    <button (click)="getAccessToken()">token</button>
+    <br><br>
+    <button (click)="getAccessToken()"  class="button-85">See token</button>
     <div >
       {{token}}
     </div>
 
-    <div *ngIf="isAdmin()">
-      <p>Selam Admin!</p>
-    </div>
+
 
 
 

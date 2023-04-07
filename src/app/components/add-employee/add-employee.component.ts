@@ -37,7 +37,7 @@ export class AddEmployeeComponent implements OnInit{
     this.employee.name = this.addForm.get('name')?.value;
     this.employee.departmentName = this.addForm.get('departmentName')?.value;
     this.employee.preferred_username=this.getUsername();
-    console.log(this.employee);
+   // console.log(this.employee);
 
     this.employeeService.createEmployee(this.employee)
       .subscribe(data =>{
@@ -53,6 +53,8 @@ export class AddEmployeeComponent implements OnInit{
   onSubmit(){
 
     this.saveEmployee();
+    this.router.navigate(['add-employee']);
+
   }
 
 
