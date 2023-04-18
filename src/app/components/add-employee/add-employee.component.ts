@@ -67,4 +67,8 @@ export class AddEmployeeComponent implements OnInit{
     this.preferred_username = userClaims.preferred_username || '';
     return this.preferred_username;
   }
+
+  trial(){
+    return "trial";
+  }
 }

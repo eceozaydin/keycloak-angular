@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import { Observable } from 'rxjs';
 import {OAuthService} from "angular-oauth2-oidc";
 import {JwtHelperService} from "@auth0/angular-jwt";
@@ -10,18 +10,19 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 export class AddEmployeeGuard implements CanActivate {
   constructor(
     private oauthService: OAuthService,
-    private jwtHelper: JwtHelperService
+    private jwtHelper: JwtHelperService,
+
+    private router: Router,
 
   ) {
   }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.isAdmin()){
-      return true
-    }
-    else{
-      return false;
+    if (this.oauthService.hasValidIdToken() && this.oauthService.hasValidAccessToken() && this.isAdmin()) {
+      return true;
+    } else {
+      return this.router.parseUrl('welcome');
     }
   }
 
@@ -31,7 +32,5 @@ export class AddEmployeeGuard implements CanActivate {
     return !!payload && payload.realm_access.roles.includes('admin');
   }
 
-  trial(){
-    return "trial";
-  }
+
 }

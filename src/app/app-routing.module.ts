@@ -5,12 +5,13 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {AuthGuard} from "./services/auth.guard";
 import {AddEmployeeComponent} from "./components/add-employee/add-employee.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {AddEmployeeGuard} from "./components/add-employee/add-employee.guard";
 
 const routes: Routes = [
   {
     path: 'add-employee',
     component: AddEmployeeComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AddEmployeeGuard],
     //data: { roles: ['admin'] },
   },
 
