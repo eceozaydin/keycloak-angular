@@ -5,12 +5,13 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {AuthGuard} from "./services/auth.guard";
 import {AddEmployeeComponent} from "./components/add-employee/add-employee.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {AddEmployeeGuard} from "./components/add-employee/add-employee.guard";
 
 const routes: Routes = [
   {
     path: 'add-employee',
     component: AddEmployeeComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AddEmployeeGuard],
     //data: { roles: ['admin'] },
   },
 
@@ -41,36 +42,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-/*
-const routes: Routes = [
-  {
-    path: 'add-employee',
-    component: AddEmployeeComponent,
-    canActivate: [AuthGuard],
-    data: { roles: ['admin'] },
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate:[AuthGuard]
-  },
-  {
-    path: 'welcome',
-    component: WelcomeComponent,
-  },
-  {
-    path: "",
-    redirectTo:"welcome",
-    pathMatch: "full"},
-  {
-    path: "**",
-    redirectTo:"welcome",
-    pathMatch: "full"},
 
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}*/
