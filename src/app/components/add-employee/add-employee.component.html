@@ -11,8 +11,11 @@
       <input type="text" formControlName="departmentName" class="form-control">
     </div>
     <button type="submit" class="button-85" [disabled]="!addForm.valid" >Submit</button>
-
+    <div class="alert alert-success" *ngIf="successMessage">
+      {{ successMessage }}
+    </div>
   </form>
+
 
 
 </div>

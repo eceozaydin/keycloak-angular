@@ -19,6 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.oauthService.getAccessToken();
     const preferredUsername = this.getUsername();
 
+
     // token varsa header'a ekle
     if (token) {
       request = request.clone({

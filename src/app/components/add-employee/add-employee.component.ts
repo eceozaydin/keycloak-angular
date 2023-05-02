@@ -16,6 +16,7 @@ export class AddEmployeeComponent implements OnInit{
   addForm!: FormGroup;// '!' kullanarak addForm'un kesinlikle tanımlanacağını belirtiyoruz.
 
   preferred_username="";
+  successMessage: string = '';
 
  constructor(private formBuilder: FormBuilder,
              private employeeService: EmployeeService,
@@ -42,7 +43,10 @@ export class AddEmployeeComponent implements OnInit{
     this.employeeService.createEmployee(this.employee)
       .subscribe(data =>{
         this.goToList().then(r => {
-          console.log(this.employee);
+          this.successMessage = 'Employee created successfully!';
+          console.log(this.successMessage);
+            console.log(this.employee);
+          this.goToEmployeeList();
         },
           error => console.log(error));
       });
@@ -68,7 +72,5 @@ export class AddEmployeeComponent implements OnInit{
     return this.preferred_username;
   }
 
-  trial(){
-    return "trial";
-  }
+
 }
