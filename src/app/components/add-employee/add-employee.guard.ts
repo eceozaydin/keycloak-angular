@@ -16,6 +16,14 @@ export class AddEmployeeGuard implements CanActivate {
 
   ) {
   }
+
+  /**
+   * This method is used to check if the user is logged in and has a valid access token.
+   * Also,it checks if the user is an admin.
+   * @param route
+   * @param state
+   * @returns boolean | UrlTree - true if the user is logged in and has a valid access token and is an admin, otherwise it redirects to the welcome page.
+   */
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
@@ -26,6 +34,9 @@ export class AddEmployeeGuard implements CanActivate {
     }
   }
 
+  /**
+   * This method is used to check if the user is an admin.
+   */
   isAdmin(): boolean {
     const decodedAccessToken = this.oauthService.getAccessToken();
     const payload = this.jwtHelper.decodeToken(decodedAccessToken);

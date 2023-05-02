@@ -38,33 +38,31 @@ export class AddEmployeeComponent implements OnInit{
     this.employee.name = this.addForm.get('name')?.value;
     this.employee.departmentName = this.addForm.get('departmentName')?.value;
     this.employee.preferred_username=this.getUsername();
-   // console.log(this.employee);
+
 
     this.employeeService.createEmployee(this.employee)
       .subscribe(data =>{
         this.goToList().then(r => {
           this.successMessage = 'Employee created successfully!';
-          console.log(this.successMessage);
+            console.log(this.successMessage);
             console.log(this.employee);
-          this.goToEmployeeList();
+            this.goToEmployeeList();
         },
           error => console.log(error));
       });
   }
+  goToList() {
+    return this.router.navigate(['/employee/add']);
+  }
+
   goToEmployeeList(){
    this.router.navigate(['add-employee']);
   }
   onSubmit(){
-
     this.saveEmployee();
-    this.router.navigate(['add-employee']);
-
   }
 
 
-  goToList() {
-   return this.router.navigate(['/employee/add']);
-  }
 
   getUsername(){
     const userClaims: any = this.oauthService.getIdentityClaims();
